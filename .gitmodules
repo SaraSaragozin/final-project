@@ -1,0 +1,51 @@
+[submodule "services/book-service"]
+	path = services/book-service
+	url = https://github.com/CinthiaDayanara/book-service.git
+[submodule "services/list-service-courses"]
+	path = services/list-service-courses
+	url = https://github.com/CinthiaDayanara/list-service-courses.git
+[submodule "services/update-courses"]
+	path = services/update-courses
+	url = https://github.com/CinthiaDayanara/update-courses.git
+[submodule "services/delete-courses"]
+	path = services/delete-courses
+	url = https://github.com/CinthiaDayanara/delete-courses.git
+[submodule "services/course-create"]
+	path = services/course-create
+	url = https://github.com/CinthiaDayanara/course-create.git
+[submodule "services/update-user"]
+	path = services/update-user
+	url = https://github.com/CinthiaDayanara/update-user.git
+[submodule "services/list-service1"]
+	path = services/list-service1
+	url = https://github.com/CinthiaDayanara/list-service1.git
+[submodule "services/delete-user"]
+	path = services/delete-user
+	url = https://github.com/CinthiaDayanara/delete-user.git
+[submodule "services/create-user"]
+	path = services/create-user
+	url = https://github.com/CinthiaDayanara/create-user.git
+[submodule "services/update-task"]
+	path = services/update-task
+	url = https://github.com/CinthiaDayanara/update-task.git
+[submodule "services/delete-task"]
+	path = services/delete-task
+	url = https://github.com/CinthiaDayanara/delete-task.git
+[submodule "services/list-task"]
+	path = services/list-task
+	url = https://github.com/CinthiaDayanara/list-task.git
+[submodule "services/create-task1"]
+	path = services/create-task1
+	url = https://github.com/CinthiaDayanara/create-task1.git
+[submodule "services/review-service"]
+	path = services/review-service
+	url = https://github.com/CinthiaDayanara/review-service.git
+[submodule "services/loginservice"]
+	path = services/loginservice
+	url = https://github.com/CinthiaDayanara/loginservice.git
+[submodule "services/weather-service"]
+	path = services/weather-service
+	url = https://github.com/CinthiaDayanara/weather-service.git
+[submodule "services/service-covid"]
+	path = services/service-covid
+	url = https://github.com/CinthiaDayanara/service-covid.git
