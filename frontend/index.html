@@ -1,0 +1,272 @@
+// Function to toggle the display of submenus
+function toggleMenu(menuId) {
+    const submenu = document.getElementById(menuId);
+    submenu.style.display = (submenu.style.display === 'none' || submenu.style.display === '') ? 'block' : 'none';
+}
+
+// Function to load content dynamically based on the clicked menu item
+function loadContent(contentId) {
+    const content = document.getElementById('content');
+    content.innerHTML = '';
+
+    switch(contentId) {
+        case 'course-list':
+            content.innerHTML = '<h2>List Courses</h2><div id="courseList"></div>';
+            listCourses();
+            break;
+        case 'course-create':
+            content.innerHTML = `
+                <h2>Create Course</h2>
+                <form id="createCourseForm">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description"></textarea>
+                    <label for="duration">Duration</label>
+                    <input type="number" id="duration" name="duration">
+                    <button type="submit">Create Course</button>
+                </form>
+            `;
+            document.getElementById('createCourseForm').addEventListener('submit', createCourse);
+            break;
+        case 'course-update':
+            content.innerHTML = `
+                <h2>Update Course</h2>
+                <form id="updateCourseForm">
+                    <label for="id">Course ID</label>
+                    <input type="text" id="id" name="id">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description"></textarea>
+                    <label for="duration">Duration</label>
+                    <input type="number" id="duration" name="duration">
+                    <button type="submit">Update Course</button>
+                </form>
+            `;
+            document.getElementById('updateCourseForm').addEventListener('submit', updateCourse);
+            break;
+        case 'course-delete':
+            content.innerHTML = `
+                <h2>Delete Course</h2>
+                <form id="deleteCourseForm">
+                    <label for="id">Course ID</label>
+                    <input type="text" id="id" name="id">
+                    <button type="submit">Delete Course</button>
+                </form>
+            `;
+            document.getElementById('deleteCourseForm').addEventListener('submit', deleteCourse);
+            break;
+        // Repeat similarly for task, user, review, and book
+        // ...
+        case 'task-list':
+            content.innerHTML = '<h2>List Tasks</h2><div id="taskList"></div>';
+            listTasks();
+            break;
+        case 'task-create':
+            content.innerHTML = `
+                <h2>Create Task</h2>
+                <form id="createTaskForm">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description"></textarea>
+                    <button type="submit">Create Task</button>
+                </form>
+            `;
+            document.getElementById('createTaskForm').addEventListener('submit', createTask);
+            break;
+        case 'task-update':
+            content.innerHTML = `
+                <h2>Update Task</h2>
+                <form id="updateTaskForm">
+                    <label for="id">Task ID</label>
+                    <input type="text" id="id" name="id">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description"></textarea>
+                    <label for="status">Status</label>
+                    <select id="status" name="status">
+                        <option value="pending">Pending</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                    <button type="submit">Update Task</button>
+                </form>
+            `;
+            document.getElementById('updateTaskForm').addEventListener('submit', updateTask);
+            break;
+        case 'task-delete':
+            content.innerHTML = `
+                <h2>Delete Task</h2>
+                <form id="deleteTaskForm">
+                    <label for="id">Task ID</label>
+                    <input type="text" id="id" name="id">
+                    <button type="submit">Delete Task</button>
+                </form>
+            `;
+            document.getElementById('deleteTaskForm').addEventListener('submit', deleteTask);
+            break;
+    }
+}
+
+// Function to list courses
+function listCourses() {
+    fetch('/api/courses')
+        .then(response => response.json())
+        .then(data => {
+            const courseList = document.getElementById('courseList');
+            data.courses.forEach(course => {
+                const courseItem = document.createElement('div');
+                courseItem.textContent = `${course.title} - ${course.description} (${course.duration} hours)`;
+                courseList.appendChild(courseItem);
+            });
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+// Function to create a new course
+function createCourse(event) {
+    event.preventDefault();
+    const title = document.getElementById('title').value;
+    const description = document.getElementById('description').value;
+    const duration = document.getElementById('duration').value;
+
+    fetch('/api/courses', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ title, description, duration })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Course created:', data);
+        alert('Course created successfully');
+        loadContent('course-list');
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+// Function to update a course
+function updateCourse(event) {
+    event.preventDefault();
+    const id = document.getElementById('id').value;
+    const title = document.getElementById('title').value;
+    const description = document.getElementById('description').value;
+    const duration = document.getElementById('duration').value;
+
+    fetch(`/api/courses/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ title, description, duration })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Course updated:', data);
+        alert('Course updated successfully');
+        loadContent('course-list');
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+// Function to delete a course
+function deleteCourse(event) {
+    event.preventDefault();
+    const id = document.getElementById('id').value;
+
+    fetch(`/api/courses/${id}`, {
+        method: 'DELETE'
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Course deleted:', data);
+        alert('Course deleted successfully');
+        loadContent('course-list');
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+// Similar functions for tasks, users, reviews, and books
+// ...
+
+// Function to list tasks
+function listTasks() {
+    fetch('/api/tasks')
+        .then(response => response.json())
+        .then(data => {
+            const taskList = document.getElementById('taskList');
+            data.tasks.forEach(task => {
+                const taskItem = document.createElement('div');
+                taskItem.textContent = `${task.title} - ${task.description} (${task.status})`;
+                taskList.appendChild(taskItem);
+            });
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+// Function to create a new task
+function createTask(event) {
+    event.preventDefault();
+    const title = document.getElementById('title').value;
+    const description = document.getElementById('description').value;
+
+    fetch('/api/tasks', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ title, description })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Task created:', data);
+        alert('Task created successfully');
+        loadContent('task-list');
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+// Function to update a task
+function updateTask(event) {
+    event.preventDefault();
+    const id = document.getElementById('id').value;
+    const title = document.getElementById('title').value;
+    const description = document.getElementById('description').value;
+    const status = document.getElementById('status').value;
+
+    fetch(`/api/tasks/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ title, description, status })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Task updated:', data);
+        alert('Task updated successfully');
+        loadContent('task-list');
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+// Function to delete a task
+function deleteTask(event) {
+    event.preventDefault();
+    const id = document.getElementById('id').value;
+
+    fetch(`/api/tasks/${id}`, {
+        method: 'DELETE'
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Task deleted:', data);
+        alert('Task deleted successfully');
+        loadContent('task-list');
+    })
+    .catch(error => console.error('Error:', error));
+}
