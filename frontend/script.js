@@ -81,7 +81,7 @@ function createCourse(event) {
         },
         body: JSON.stringify({ title, description, duration })
     })
-    .then(response => response.json())
+    .then(response => response.json()) 
     .then(data => {
         console.log('Course created:', data);
         loadCourses(); // Recargar la lista de cursos
