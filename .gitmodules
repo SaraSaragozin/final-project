@@ -49,3 +49,6 @@
 [submodule "services/service-covid"]
 	path = services/service-covid
 	url = https://github.com/CinthiaDayanara/service-covid.git
+[submodule "loginservice"]
+	path = loginservice
+	url = https://github.com/SaraSaragozin/loginservice
