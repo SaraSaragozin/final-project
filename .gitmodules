@@ -40,9 +40,6 @@
 [submodule "services/review-service"]
 	path = services/review-service
 	url = https://github.com/CinthiaDayanara/review-service.git
-[submodule "services/loginservice"]
-	path = services/loginservice
-	url = https://github.com/CinthiaDayanara/loginservice.git
 [submodule "services/weather-service"]
 	path = services/weather-service
 	url = https://github.com/CinthiaDayanara/weather-service.git
@@ -52,3 +49,21 @@
 [submodule "loginservice"]
 	path = loginservice
 	url = https://github.com/SaraSaragozin/loginservice
+[submodule "math-problem-service"]
+	path = math-problem-service
+	url = https://github.com/SaraSaragozin/math-problem-service
+[submodule "services/math-problem-service"]
+	path = services/math-problem-service
+	url = https://github.com/SaraSaragozin/math-problem-service
+[submodule "services/equation-library-microservice"]
+	path = services/equation-library-microservice
+	url = https://github.com/SaraSaragozin/equation-library-microservice
+[submodule "services/formula-repository-microservice"]
+	path = services/formula-repository-microservice
+	url = https://github.com/SaraSaragozin/formula-repository-microservice
+[submodule "services/math-concepts-microservice"]
+	path = services/math-concepts-microservice
+	url = https://github.com/SaraSaragozin/math-concepts-microservice
+[submodule "services/theorem-microservice"]
+	path = services/theorem-microservice
+	url = https://github.com/SaraSaragozin/theorem-microservice

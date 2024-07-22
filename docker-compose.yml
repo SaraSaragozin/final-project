@@ -100,7 +100,7 @@ services:
       - MONGO_URL=mongodb://mongo:27017/users_db
 
   loginservice:
-    image: dayanara1898/loginservice
+    image: sarasaragozin/loginservice
     ports:
       - "5000:5000"
     environment:
@@ -125,3 +125,4 @@ services:
 
 volumes:
   mongo-data:
+ 
