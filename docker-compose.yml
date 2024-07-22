@@ -1,0 +1,127 @@
+version: '3.8'
+
+services:
+  books-service:
+    image: dayanara1898/book-service
+    ports:
+      - "3012:3012"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/books_db
+
+  course-create:
+    image: dayanara1898/course-create
+    ports:
+      - "3004:3004"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/courses_db
+
+  create-task1:
+    image: dayanara1898/create-task1
+    ports:
+      - "3008:3008"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/tasks_db
+
+  delete-courses:
+    image: dayanara1898/delete-course
+    ports:
+      - "3005:3005"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/courses_db
+
+  delete-task:
+    image: dayanara1898/delete-task
+    ports:
+      - "3009:3009"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/tasks_db
+
+  delete-user:
+    image: dayanara1898/delete-user
+    ports:
+      - "3001:3001"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/users_db
+
+  list-service-courses:
+    image: dayanara1898/list-service-courses
+    ports:
+      - "3007:3007"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/courses_db
+
+  list-service1:
+    image: dayanara1898/list-service1
+    ports:
+      - "3003:3003"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/users_db
+
+  list-task:
+    image: dayanara1898/list-task
+    ports:
+      - "3011:3011"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/tasks_db
+
+  review-service:
+    image: dayanara1898/review-service
+    ports:
+      - "3013:3013"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/reviews_db
+
+  update-courses:
+    image: dayanara1898/update-courses
+    ports:
+      - "3006:3006"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/courses_db
+
+  update-task:
+    image: dayanara1898/update-task
+    ports:
+      - "3010:3010"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/tasks_db
+
+  update-user:
+    image: dayanara1898/update-user
+    ports:
+      - "3002:3002"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/users_db
+
+  create-user:
+    image: dayanara1898/create-user
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/users_db
+
+  loginservice:
+    image: dayanara1898/loginservice
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/users_db
+
+  weather-service:
+    image: dayanara1898/weather-microservice
+    ports:
+      - "3014:3014"
+
+  covid-service:
+    image: dayanara1898/covid-microservice
+    ports:
+      - "3015:3015"
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
